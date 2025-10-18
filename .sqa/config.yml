@@ -1,0 +1,78 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/IFCA-Advanced-Computing/anjana:
+      branch: main
+      repo: https://github.com/IFCA-Advanced-Computing/anjana
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/IFCA-Advanced-Computing/anjana git:
+        commands:
+        - /usr/bin/env sh .sqa/script.blurry-beige-oriole.sh
+        container: qc.acc_chummy-burgundy-kiwi
+  QC.Doc:
+    repos:
+      github.com/IFCA-Advanced-Computing/anjana find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.sleazy-lime-wolfhound.sh
+        container: qc.doc_ready-indigo-barracuda
+      github.com/IFCA-Advanced-Computing/anjana git:
+        commands:
+        - /usr/bin/env sh .sqa/script.skanky-ultramarine-civet.sh
+        container: qc.doc_bluesy-asparagus-gharial
+      github.com/IFCA-Advanced-Computing/anjana markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.shabby-white-wasp.sh
+        container: qc.doc_slimy-tan-hyrax
+      github.com/IFCA-Advanced-Computing/anjana restructuredtext-lint:
+        commands:
+        - /usr/bin/env sh .sqa/script.wimpy-maroon-shrew.sh
+        container: qc.doc_stinky-fuchsia-ocelot
+  QC.Lic:
+    repos:
+      github.com/IFCA-Advanced-Computing/anjana licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.muggy-seashell-hamster.sh
+        container: qc.lic_hasty-jade-hyena
+  QC.Met:
+    repos:
+      github.com/IFCA-Advanced-Computing/anjana cff-converter-python:
+        commands:
+        - /usr/bin/env sh .sqa/script.lovely-flax-abyssinian.sh
+        container: qc.met_sunny-lemon-walrus
+  QC.Sec:
+    repos:
+      github.com/IFCA-Advanced-Computing/anjana bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.shaggy-periwinkle-wasp.sh
+        container: qc.sec_craggy-green-baboon
+  QC.Sty:
+    repos:
+      github.com/IFCA-Advanced-Computing/anjana flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.muggy-cream-numbat.sh
+        container: qc.sty_flimsy-zucchini-rhinoceros
+      github.com/IFCA-Advanced-Computing/anjana jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.craggy-saffron-markhor.sh
+        container: qc.sty_queasy-zucchini-horse
+  QC.Uni:
+    repos:
+      github.com/IFCA-Advanced-Computing/anjana pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.gimpy-mauve-cattle.sh
+        container: qc.uni_scanty-sepia-starfish
+  QC.Ver:
+    repos:
+      github.com/IFCA-Advanced-Computing/anjana get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.hilly-platinum-badger.sh
+        container: qc.ver_messy-vermilion-chin
+timeout: 5400
